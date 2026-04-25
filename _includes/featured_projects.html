@@ -1,0 +1,9 @@
+<!-- _includes/featured_projects.html -->
+<div class="projects">
+  <div class="grid">
+    {%- assign featured = site.projects | where: "featured", true | sort: "importance" -%}
+    {%- for project in featured -%}
+      {% include projects.html %}
+    {%- endfor %}
+  </div>
+</div>

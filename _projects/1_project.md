@@ -1,80 +1,33 @@
 ---
 layout: page
-title: project 1
-description: a project with a background image
+title: Real-Time Analytics Pipeline
+description: High-throughput streaming pipeline processing 50M+ events/day using Kafka, Spark Streaming, and Delta Lake — with end-to-end latency under 2 minutes.
 img: assets/img/12.jpg
 importance: 1
-category: work
+category: data-engineering
+featured: true
+github: https://github.com/BilalNaseem1/realtime-pipeline
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+## Overview
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+A production-grade real-time data pipeline that ingests, transforms, and serves 50M+ events per day with sub-2-minute end-to-end latency.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+## Architecture
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+- **Ingestion**: Apache Kafka with 12 partitions per topic for parallelism
+- **Processing**: Spark Structured Streaming with stateful aggregations and watermarking
+- **Storage**: Delta Lake on S3 with ACID transactions and schema enforcement
+- **Serving**: Materialized views in Snowflake, refreshed every 5 minutes
+- **Monitoring**: Prometheus + Grafana dashboards for lag, throughput, and error rates
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, *bled* for your project, and then... you reveal its glory in the next row of images.
+## Key Outcomes
 
+- Reduced reporting latency from **4 hours to under 2 minutes**
+- Handles **3x traffic spikes** without manual intervention via auto-scaling
+- **Zero data loss** over 6 months of production operation
+- Schema evolution handled without downtime using Delta Lake's schema merging
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+## Tech Stack
 
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-```html
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-```
-{% endraw %}
+`Python` `PySpark` `Apache Kafka` `Delta Lake` `Snowflake` `AWS S3` `AWS EMR` `Prometheus` `Grafana`

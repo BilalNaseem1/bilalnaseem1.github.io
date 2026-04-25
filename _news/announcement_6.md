@@ -1,6 +1,7 @@
 ---
 layout: post
-date: 2023-05-31 07:59:00-0400
+date: 2023-08-01 09:00:00-0400
 inline: true
 ---
-I successfully defended my masters thesis!
+
+New article: [From Zero to Feature Store: ML Infrastructure for the Rest of Us](/blog).

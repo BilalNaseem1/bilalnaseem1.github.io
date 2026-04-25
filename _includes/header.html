@@ -20,12 +20,18 @@
               {{- site.title -}}
             {%- endif -%}
           </a>
+          {%- if site.linkedin_username -%}
+          <!-- LinkedIn icon on inner pages (top-left) -->
+          <a class="navbar-brand" href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          {%- endif -%}
           {%- elsif site.enable_navbar_social -%}
-          <!-- Social Icons -->
+          <!-- Social Icons (homepage only) -->
           <div class="navbar-brand social">
             {% include social.html %}
           </div>
-          {% endif %}
+          {%- endif -%}
           <!-- Navbar Toggle -->
           <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>

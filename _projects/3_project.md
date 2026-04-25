@@ -1,81 +1,32 @@
 ---
 layout: page
-title: project 3
-description: a project that redirects to another website
+title: Enterprise Data Warehouse
+description: Modular dbt-based data warehouse on Snowflake with Airflow orchestration, automated data quality checks, and full lineage documentation.
 img: assets/img/7.jpg
-redirect: https://unsplash.com
 importance: 3
-category: work
+category: data-engineering
+featured: true
+github: https://github.com/BilalNaseem1/data-warehouse
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+## Overview
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+A production data warehouse serving as the single source of truth for business analytics — built with dbt on Snowflake, orchestrated by Airflow, and enforced by automated data quality gates.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+## Architecture
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+- **Modeling**: dbt with a 3-layer architecture (raw → staging → mart), 200+ models
+- **Orchestration**: Apache Airflow with dynamic DAG generation for environment parity
+- **Quality**: Great Expectations for schema, freshness, and distribution checks on every run
+- **Lineage**: Auto-generated dbt docs + DataHub integration for full upstream/downstream visibility
+- **CI/CD**: dbt Cloud CI for PR-level model testing before merge
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, *bled* for your project, and then... you reveal its glory in the next row of images.
+## Key Outcomes
 
+- Consolidated **7 disparate reporting sources** into a single governed warehouse
+- Reduced analyst query time by **60%** through pre-aggregated mart models
+- **100% data quality coverage** on critical tables — zero silent failures in production
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+## Tech Stack
 
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-```html
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.html path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-```
-{% endraw %}
+`dbt` `Snowflake` `Apache Airflow` `Great Expectations` `DataHub` `Python` `SQL` `GitHub Actions`

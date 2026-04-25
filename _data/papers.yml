@@ -1,0 +1,12 @@
+# Add your papers here. Each entry appears as a line on the home page.
+# Fields: title, venue, date, url (url is optional — remove the line if no link yet)
+
+- title: "[Your Second Paper Title — update this]"
+  venue: "[Conference/Venue]"
+  date: "Oct 2025"
+  url: ""
+
+- title: "[Your First Paper Title — update this]"
+  venue: "[Conference/Venue]"
+  date: "Jun 2024"
+  url: ""

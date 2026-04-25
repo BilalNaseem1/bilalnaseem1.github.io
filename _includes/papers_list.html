@@ -1,0 +1,11 @@
+<!-- _includes/papers_list.html -->
+<div class="papers-list">
+  {% for paper in site.data.papers %}
+  <p>
+    <strong>{{ paper.title }}</strong> — {{ paper.venue }}, {{ paper.date }}.
+    {% if paper.url and paper.url != "" %}
+    <a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">Read the paper →</a>
+    {% endif %}
+  </p>
+  {% endfor %}
+</div>

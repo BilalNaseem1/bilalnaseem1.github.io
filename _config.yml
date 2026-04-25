@@ -3,20 +3,20 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-first_name: Aniket
+first_name: Bilal
 middle_name:
-last_name: Rege
-email: aniketr@cs.wisc.edu
+last_name: Naseem
+email: your@email.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  Data Engineer & ML Engineer — building scalable data systems and production ML pipelines.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website  # add your own keywords or leave empty
+keywords: data engineer, machine learning engineer, data science, portfolio, python, spark, airflow, mlops
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://aniketrege.github.io # the base hostname & protocol for your site
+url: https://bilalnaseem1.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path:  # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
@@ -65,14 +65,14 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 # Social integration
 # -----------------------------------------------------------------------------
 
-github_username: aniketrege
+github_username: BilalNaseem1
 gitlab_username: # your GitLab user name
-twitter_username: wregss
-linkedin_username: aniket-rege
-scholar_userid: qdsfqI4AAAAJ
+twitter_username: your-twitter-handle # ← replace with your Twitter/X handle
+linkedin_username: bilalnaseem1
+scholar_userid: # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID
-orcid_id: # 0000-0003-1621-7098
-medium_username: # your Medium username
+orcid_id: # your ORCID ID
+medium_username: bilalnaseem19 # medium.com/@bilalnaseem19
 quora_username: # your Quora username
 publons_id: # your ID on Publons
 research_gate_profile: # your profile on ResearchGate
@@ -92,13 +92,13 @@ facebook_id: # your facebook id
 discord_id: # your discord id (18-digit unique numerical identifier)
 
 contact_note: >
-  Reachable at <my_first_name>r@cs.wisc.edu
+  Open to opportunities — reach me at <a href="mailto:your@email.com">your@email.com</a>
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
 # -----------------------------------------------------------------------------
 
-google_analytics:  G-581WGMK2VJ
+google_analytics:  # your Google Analytics ID
 panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
@@ -108,9 +108,9 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Machination Learning # blog_name will be displayed in your blog page
-blog_nav_title: blog # your blog must have a title for it to be displayed in the nav bar
-blog_description: Join me on my Stochastic Graduate Descent (to Enlightment? Madness? Only time will tell!)
+blog_name: Data & ML Insights # blog_name will be displayed in your blog page
+blog_nav_title: articles # your blog must have a title for it to be displayed in the nav bar
+blog_description: Thoughts on data engineering, machine learning, and building production systems at scale.
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -118,7 +118,7 @@ pagination:
   enabled: true
 
 giscus:
-  repo: aniketrege/aniketrege.github.io      # <your-github-user-name>/<your-github-repo-name>
+  repo: BilalNaseem1/BilalNaseem1.github.io      # <your-github-user-name>/<your-github-repo-name>
   repo_id: 
   category: Comments             # name of the category under which discussions will be created
   category_id:
@@ -241,8 +241,8 @@ jekyll-archives:
 
 scholar:
 
-  last_name: [Rege]
-  first_name: [Aniket, A.]
+  last_name: [Naseem]
+  first_name: [Bilal, B.]
 
   style: apa
   locale: en
@@ -305,7 +305,7 @@ jekyll-diagrams:
 # Optional Features
 # -----------------------------------------------------------------------------
 
-enable_google_analytics:    true  # enables google analytics
+enable_google_analytics:    false  # enables google analytics
 enable_panelbear_analytics: false  # enables panelbear analytics
 enable_google_verification: false  # enables google site verification
 enable_bing_verification:   false  # enables bing site verification

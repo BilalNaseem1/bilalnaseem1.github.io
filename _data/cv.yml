@@ -2,110 +2,85 @@
   type: map
   contents:
     - name: Full Name
-      value: Aniket Rege
+      value: Bilal Naseem
+    - name: Location
+      value: "[Your City, State]"
+    - name: Email
+      value: your@email.com
     - name: Languages
-      value: English, Hindi, Marathi
+      value: English, Urdu
 
 - title: Education
   type: time_table
   contents:
-    - title: Ph.D, Computer Sciences
-      institution: University of Wisconsin-Madison
-      year: 2023 - present
+    - title: M.S., Data Science
+      institution: "[Your University]"
+      year: "[Year]"
       description:
-        - Working on Preference Learning and Generative Vision Models
-    - title: MS, Electrical and Computer Engineering
-      institution: University of Washington, Seattle
-      year: 2021 - 2023
+        - Coursework in machine learning, big data systems, statistical modeling, and deep learning
+        - "[Thesis/capstone project title if applicable]"
+    - title: B.S., Mechanical Engineering
+      institution: "[Your University]"
+      year: "[Year]"
       description:
-        - Graduate Researcher at RAIVN Lab, Department of Computer Science
-        - Research focus on visual representation learning, learning from minimal supervision, and large scale image retrieval
-        - Graduate T.A.
-    - title: B. Tech, Electronics and Communication Engineering
-      institution: National Institute of Technology Karnataka
-      year: 2014-2018
-      description:
-        - Thesis on fairness of QUIC Protocol in real-world deployment.
+        - Coursework in thermodynamics, fluid mechanics, numerical methods, and control systems
+        - Foundation in mathematical modeling and simulation — applied daily in data systems
 
 - title: Experience
   type: time_table
   contents:
-    - title: Student Researcher
-      institution: Google DeepMind, Bangalore
-      year: 2026
+    - title: "[Your Role — e.g. Data Engineer / ML Engineer]"
+      institution: "[Company Name]"
+      year: "[Year – Present]"
       description:
-        - Working on evals and LLM post training for long horizon agentic tool use.
-    - title: Research Scientist Intern
-      institution: Meta, Redmond
-      year: 2025
+        - "[Describe a key achievement with metrics, e.g. Built ETL pipelines processing 5TB/day with <30min SLA]"
+        - "[Another impact statement]"
+        - "[Another impact statement]"
+    - title: "[Previous Role]"
+      institution: "[Previous Company]"
+      year: "[Year – Year]"
       description:
-        - Addressing very long video video understanding (~1 week +) with an agentic approach, EGAgent
-        - Key contribution - modeling inter-entity relationships with a temporally annotated entity-scene graph
-        - State-of-the-art results on EgoLife and competitive on Video-MME (Long)
-    - title: Applied Research Intern
-      institution: NVIDIA, Redmond
-      year: 2022
-      description:
-        - Improved performance of MultiView LidarNet on pedestrians, a critical safety and reliability issue for autonomous vehicles
-        - Incorporation of pedestrian orientation-aware training schema to improve precision on cars by 21.3% and pedestrians by 14.7% at cost to recall
-        - To model long-range dependencies in representation subspace of Lidar point cloud, added naive multi-head attention at deeper layers, as well as ViT-style patched multi-head attention at shallower layers
-        - Creation of attention-augmented CNN improved overall pedestrian performance (+8% recall, +7.5% precision) at only +1.5 ms inference cost while also improving car performance
-    - title: Research Engineer
-      institution: Samsung Research, Bangalore
-      year: 2018 - 2021
-      description:
-        - Founding member in the team that developed and shipped Single Take Camera, the USP of the Galaxy S20 smartphone, which included an ML classification model for portrait mode effects and overall system logic
-        - Published two papers on structured video representations for motion understanding (ICCV W '21) and intelligent facial texture smoothing (CVPR W '20)
-        - Granted two US Patents for work on facial texture smoothing and deep learning candid image classification
+        - "[Key achievement with impact]"
+        - "[Key achievement with impact]"
 
-
-- title: Honors and Awards
-  type: time_table
+- title: Skills
+  type: nested_list
   contents:
-    - year: 2023
-      items: 
-        - Department of Computer Sciences Scholarship
-    - year: 2022
-      items: 
-        - NeurIPS Scholar
-        - University of Washington Graduate School Award
-    - year: 2021
-      items: 
-        - Samsung HQ Best Project Award (Single Take Camera)
-    - year: 2019
-      items: 
-        - Samsung Best Paper '19 Finalist (Selected from all worldwide offices)
-        - Samsung India Outstanding Contribution Award (AI Beauty Solution shipped to 50M+ devices)
-    - year: 2017
+    - title: Data Engineering
       items:
-        - Road to Global Entrepreneurship Summit (GES) '17 national finalist for "An analysis of sleep hygiene" project 
+        - Apache Spark, Kafka, Flink, Airflow, dbt
+        - Snowflake, BigQuery, Delta Lake, PostgreSQL, Redshift
+        - AWS (S3, EMR, Glue, Lambda, ECS, Redshift), GCP (BigQuery, Dataflow, Pub/Sub)
+        - Data modeling, schema design, CDC pipelines
+    - title: Machine Learning & MLOps
+      items:
+        - PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM
+        - MLflow, Weights & Biases, Feast (feature store)
+        - NLP, time-series forecasting, anomaly detection, computer vision
+        - Model serving with FastAPI, TorchServe, and AWS SageMaker
+    - title: Programming & Infrastructure
+      items:
+        - Python (pandas, NumPy, PySpark), SQL, Scala
+        - Docker, Kubernetes, Terraform, CI/CD (GitHub Actions, Jenkins)
+        - REST APIs, GraphQL, Prometheus/Grafana monitoring
+        - Git, Linux, Bash scripting
 
-- title: Extracurriculars
+- title: Publications
   type: time_table
   contents:
-    - title: Convener and Head
-      institution: Indian Society for Technical Education (ISTE), NITK
-      year: 2017-18
-      description:
-        - Led a team of 100+ students to conduct technical talk and cross-domain technical projects across STEM fields, business, literature, and graphic design.
-        - Head of the Electrical Engineering special interest group.
-        - Pioneered NITK's first annual technical club project expo in association with IEEE-NITK
+    - year: "[Year]"
+      items:
+        - "[Paper 1 Title] — [Venue/Journal]"
+    - year: "[Year]"
+      items:
+        - "[Paper 2 Title] — [Venue/Journal]"
 
-    - title: Joint Convener and Head
-      institution: Engineer NITK (Technical Fest)
-      year: 2017
-      description:
-        - Joint head of NITK's annual tech fest, Engineer, the second largest in South India.
-        - Co-led the Technites Committee, a three day expo of EECS projects primarily focused on embedded electronics and sound engineering.
-        - Initiated and organized the university's first cross-campus hackathon during the annual tech fest with SRIB.
-# - title: Academic Interests
-#   type: nested_list
-#   contents:
-#     - title: Topic 1.
-#       items: 
-#         - Description 1.
-#         - Description 2.
-#     - title: Topic 2.
-#       items:
-#         - Description 1.
-#         - Description 2.
+- title: Honors & Awards
+  type: time_table
+  contents:
+    - year: "[Year]"
+      items:
+        - "[Award or recognition]"
+    - year: "[Year]"
+      items:
+        - "[Award or recognition]"

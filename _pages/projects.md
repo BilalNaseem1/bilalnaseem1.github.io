@@ -1,11 +1,11 @@
 ---
 layout: page
-title: projects
+title: portfolio
 permalink: /projects/
-description: A growing collection of your cool projects.
-nav: false
+description: A collection of data engineering and machine learning projects — pipelines, platforms, and production systems.
+nav: true
 nav_order: 2
-display_categories: [work, fun]
+display_categories: [data-engineering, machine-learning]
 horizontal: false
 ---
 
