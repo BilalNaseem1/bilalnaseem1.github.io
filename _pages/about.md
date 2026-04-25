@@ -6,7 +6,7 @@ subtitle: "Data Engineer &amp; ML Engineer · Open to Senior DE, ML, and MLOps R
 
 profile:
   align: right
-  image: prof_pic.png
+  image: prof_pic.jpg
   image_circular: false
   address: >
     <p>📍 [Your City, State]</p>

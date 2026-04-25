@@ -340,6 +340,7 @@ git push
 
 | Problem | Fix |
 |---------|-----|
+| Build fails with `actions/jekyll-build-pages` error | Settings → Pages → Source must be **"Deploy from a branch"** (not "GitHub Actions") — selecting "GitHub Actions" makes GitHub run its own incompatible Jekyll builder |
 | Build fails in Actions | Click the failed run → expand the red step → read the error log |
 | Site shows old content | Hard-refresh the browser (`Ctrl+Shift+R`) or wait a minute for CDN cache |
 | `gh-pages` branch not created | Manually trigger the workflow: Actions → deploy → Run workflow |
