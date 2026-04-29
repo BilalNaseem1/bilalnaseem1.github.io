@@ -21,7 +21,7 @@ social: true
 
 → **[Browse my projects](/projects/)** &nbsp;&nbsp; **[Read my articles](/blog/)**
 
-I build systems that transform raw data into reliable, production-grade intelligence — and keep working at 3am.
+I build systems that transform raw data into reliable, production-grade intelligence.
 
 With an engineering and data science background, I bring the rigor to design systems that don't fail quietly and the analytical depth to make them genuinely useful in production.
 
@@ -32,6 +32,6 @@ With an engineering and data science background, I bring the rigor to design sys
 
 I design for failure modes, reason from first principles, and obsess over the performance/reliability tradeoff that separates prototypes from production systems. I've also published **2 peer-reviewed ML papers** — because understanding the fundamentals matters more than just using the tools.
 
-**Core stack:** Python · PySpark · Kafka · Airflow · dbt · SQL · AWS · Docker · MLflow · PyTorch · scikit-learn
+**Core stack:** Python · PySpark · Kafka · Airflow · dbt · SQL · AWS · Docker · Kubernetes · Terraform · MLflow · PyTorch · scikit-learn
 
-**Reach me:** [your@email.com](mailto:your@email.com)
+**Reach me:** [bilalnaseem1@hotmail.com](mailto:bilalnaseem1@hotmail.com)
