@@ -3,54 +3,88 @@
   contents:
     - name: Full Name
       value: Bilal Naseem
+    - name: Location
+      value: Karachi, Pakistan
     - name: Email
-      value: bilalnaseem19@gmail.com
+      value: bilalnaseem1@hotmail.com
+    - name: Phone
+      value: "+92 (340) 8888155"
+    - name: LinkedIn
+      value: linkedin.com/in/bilalnaseem1
     - name: Languages
-      value: English, Urdu
+      value: English, Urdu, French
 
 - title: Education
   type: time_table
   contents:
-    - title: M.S., Data Science
-      institution: "[Your University]"
-      year: "[Year]"
-      description:
-        - Coursework in machine learning, big data systems, statistical modeling, and deep learning
-    - title: B.S., Mechanical Engineering
-      institution: "[Your University]"
-      year: "[Year]"
-      description:
-        - Coursework in thermodynamics, fluid mechanics, numerical methods, and control systems
-        - Foundation in mathematical modeling and simulation — applied daily in data systems
+    - title: M.S. Data Science
+      institution: Institute of Business Administration (IBA), Karachi
+      year: 2022 – 2024
+    - title: B.E. Mechanical Engineering
+      institution: NED University, Karachi
+      year: 2017 – 2021
 
 - title: Experience
   type: time_table
   contents:
-    - title: "[Your Role]"
-      institution: "[Company Name]"
-      year: "[Year – Present]"
+    - title: Performance Projects Lead
+      institution: Daraz (Alibaba Group)
+      year: May 2025 – Present
       description:
-        - "[Key achievement with metrics]"
-        - "[Key achievement with metrics]"
+        - Developed and validated predictive forecasting models (LightGBM) for seasonal and monthly GMV prediction across 5 industry verticals — back-tested against historical data and integrated into automated pipelines informing <strong>$10M+ campaign decisions</strong>
+        - Built a multi-agent LLM system using LangGraph and Python — automating SQL generation, unstructured data interpretation, and multi-step query reasoning for <strong>20+ non-technical users</strong>
+        - Conducted large-scale EDA and feature engineering across <strong>5M+ SKUs</strong> and 1,900+ categories using Python and PySpark; built automated data cleaning pipelines and reusable analytical models
+        - Designed and maintained data pipelines and automated tooling using dbt and Airflow, eliminating <strong>~150 hours/month</strong> of manual workflows
+    - title: Data Engineer
+      institution: Brandverse
+      year: Jan 2023 – Apr 2025
+      description:
+        - Automated <strong>15+ ETL pipelines</strong> with validation frameworks across APIs, ERP systems, and databases for 50+ stakeholders — reducing manual effort by ~20 hours/week
+        - Designed scalable data architectures for enterprise clients (Meri Pharmacy, Syngenta Pakistan) supporting <strong>200K+ daily transactions</strong>; built 25+ SQL-powered dashboards cutting reporting cycle from 5 days to 4 hours
+    - title: Graduate Research & Teaching Assistant
+      institution: Institute of Business Administration (IBA)
+      year: Jul 2024 – Dec 2025
+      description:
+        - Co-authored <em>StaRFM — A Comprehensive Framework for Robust and Calibrated Foundation Models</em> (arXiv, 2025) — rigorous evaluation across 21 datasets for robustness, calibration, and domain generalization
+        - Mentored graduate students in ML and deep learning; developed PyTorch course materials and organized a Kaggle competition for applied quantitative analysis
+    - title: Planning & Performance Associate
+      institution: Retailo Technologies
+      year: Oct 2022 – Dec 2022
+      description:
+        - Applied K-Means clustering to optimize logistics across <strong>5,000+ daily orders</strong>; analyzed 10+ KPIs and presented data-driven recommendations to C-suite influencing product and revenue strategy
 
 - title: Skills
   type: nested_list
   contents:
+    - title: ML & Forecasting
+      items:
+        - Python (Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn)
+        - LightGBM, XGBoost, PyTorch, Time-Series Analysis, Statistical Modeling
+    - title: LLMs & Agentic AI
+      items:
+        - LangGraph, LangChain, RAG Pipelines, Multi-Agent Systems
+        - OpenAI & Anthropic APIs, Prompt Engineering, Synthetic Data Generation
     - title: Data Engineering
       items:
-        - Apache Spark, Kafka, Flink, Airflow, dbt
-        - Snowflake, BigQuery, Delta Lake, PostgreSQL, Redshift
-        - AWS (S3, EMR, Glue, Lambda, ECS, Redshift), GCP (BigQuery, Dataflow, Pub/Sub)
-        - Data modeling, schema design, CDC pipelines
-    - title: Machine Learning & MLOps
+        - Apache Airflow, PySpark, Databricks, dbt, DuckDB
+        - SQL (complex queries), ETL/ELT Pipelines, Data Quality Validation
+    - title: Cloud & DevOps
       items:
-        - PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM
-        - MLflow, Weights & Biases, Feast (feature store)
-        - NLP, time-series forecasting, anomaly detection, computer vision
-        - Model serving with FastAPI, TorchServe, and AWS SageMaker
-    - title: Programming & Infrastructure
+        - AWS (S3, EC2, Lambda, Glue, Redshift)
+        - Docker, Kubernetes, GitHub Actions, CI/CD, FastAPI
+    - title: BI & Visualization
       items:
-        - Python (pandas, NumPy, PySpark), SQL, Scala
-        - Docker, Kubernetes, Terraform, CI/CD (GitHub Actions, Jenkins)
-        - REST APIs, GraphQL, Prometheus/Grafana monitoring
-        - Git, Linux, Bash scripting
+        - Power BI, Tableau, Metabase
+        - Dashboard Automation, Stakeholder Reporting
+
+- title: Achievements
+  type: time_table
+  contents:
+    - year: 2025
+      items:
+        - "Published: StaRFM (arXiv, 2025)"
+        - 1st Place — ML Kaggle Competition (IBA)
+        - 2nd Place — Datathon (IBA)
+    - year: A Levels
+      items:
+        - 100% Merit Scholarship — Beaconhouse

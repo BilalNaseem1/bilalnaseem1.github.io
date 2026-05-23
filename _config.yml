@@ -6,7 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Bilal
 middle_name:
 last_name: Naseem
-email: your@email.com
+email: bilalnaseem1@hotmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Data Engineer & ML Engineer — building scalable data systems and production ML pipelines.
 footer_text: >
@@ -92,7 +92,7 @@ facebook_id: # your facebook id
 discord_id: # your discord id (18-digit unique numerical identifier)
 
 contact_note: >
-  Open to opportunities — reach me at <a href="mailto:your@email.com">your@email.com</a>
+  Open to opportunities — reach me at <a href="mailto:bilalnaseem1@hotmail.com">bilalnaseem1@hotmail.com</a>
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
