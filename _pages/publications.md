@@ -4,7 +4,7 @@ permalink: /research/
 title: research
 description: Peer-reviewed publications — update with your actual paper details.
 years: [2025, 2024, 2023]
-nav: true
+nav: false
 nav_order: 4
 ---
 <div style="text-align: right"> <small>* equal contribution</small> </div>

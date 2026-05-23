@@ -8,9 +8,9 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false
-  address: >
-    <p>📍 [Your City, State]</p>
-    <p>🟢 Open to Opportunities</p>
+  # address: >
+  #   <p>📍 [Your City, State]</p>
+  #   <p>🟢 Open to Opportunities</p>
 
 news: false
 selected_papers: false
