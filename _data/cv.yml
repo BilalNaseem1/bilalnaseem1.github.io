@@ -3,10 +3,8 @@
   contents:
     - name: Full Name
       value: Bilal Naseem
-    - name: Location
-      value: "[Your City, State]"
     - name: Email
-      value: your@email.com
+      value: bilalnaseem19@gmail.com
     - name: Languages
       value: English, Urdu
 
@@ -18,7 +16,6 @@
       year: "[Year]"
       description:
         - Coursework in machine learning, big data systems, statistical modeling, and deep learning
-        - "[Thesis/capstone project title if applicable]"
     - title: B.S., Mechanical Engineering
       institution: "[Your University]"
       year: "[Year]"
@@ -29,19 +26,12 @@
 - title: Experience
   type: time_table
   contents:
-    - title: "[Your Role — e.g. Data Engineer / ML Engineer]"
+    - title: "[Your Role]"
       institution: "[Company Name]"
       year: "[Year – Present]"
       description:
-        - "[Describe a key achievement with metrics, e.g. Built ETL pipelines processing 5TB/day with <30min SLA]"
-        - "[Another impact statement]"
-        - "[Another impact statement]"
-    - title: "[Previous Role]"
-      institution: "[Previous Company]"
-      year: "[Year – Year]"
-      description:
-        - "[Key achievement with impact]"
-        - "[Key achievement with impact]"
+        - "[Key achievement with metrics]"
+        - "[Key achievement with metrics]"
 
 - title: Skills
   type: nested_list
@@ -64,23 +54,3 @@
         - Docker, Kubernetes, Terraform, CI/CD (GitHub Actions, Jenkins)
         - REST APIs, GraphQL, Prometheus/Grafana monitoring
         - Git, Linux, Bash scripting
-
-- title: Publications
-  type: time_table
-  contents:
-    - year: "[Year]"
-      items:
-        - "[Paper 1 Title] — [Venue/Journal]"
-    - year: "[Year]"
-      items:
-        - "[Paper 2 Title] — [Venue/Journal]"
-
-- title: Honors & Awards
-  type: time_table
-  contents:
-    - year: "[Year]"
-      items:
-        - "[Award or recognition]"
-    - year: "[Year]"
-      items:
-        - "[Award or recognition]"

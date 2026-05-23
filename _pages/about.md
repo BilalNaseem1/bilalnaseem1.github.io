@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: "Data Engineer &amp; ML Engineer · Open to Senior DE, ML, and MLOps Roles"
 
@@ -8,14 +8,10 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false
-  # address: >
-  #   <p>📍 [Your City, State]</p>
-  #   <p>🟢 Open to Opportunities</p>
-
 news: false
 selected_papers: false
 featured_projects: true
-papers: true
+papers: false
 social: true
 ---
 

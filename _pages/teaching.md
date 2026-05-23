@@ -1,9 +1,9 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching
+title: Teaching
 description: Courses I have TA'd in the past
-nav: true
+nav: false
 nav_order: 5
 ---
 ---

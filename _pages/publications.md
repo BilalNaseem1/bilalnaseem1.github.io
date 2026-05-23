@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /research/
-title: research
+title: Research
 description: Peer-reviewed publications — update with your actual paper details.
 years: [2025, 2024, 2023]
 nav: false
