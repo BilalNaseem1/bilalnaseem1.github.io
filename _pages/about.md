@@ -19,7 +19,7 @@ papers: true
 social: true
 ---
 
-→ **[Browse my projects](/projects/)** &nbsp;&nbsp; **[Read my articles](/blog/)**
+→ **[Browse my projects](/projects/)**
 
 I build systems that transform raw data into reliable, production-grade intelligence.
 
