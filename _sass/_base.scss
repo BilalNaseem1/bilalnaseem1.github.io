@@ -500,27 +500,39 @@ footer.sticky-bottom {
   }
 
   .card {
-    img {
-      width: 100%;
-      max-height: 140px;
-      object-fit: cover;
+    // constrain the figure+picture wrapper so the image is always a fixed height
+    figure {
+      height: 150px;
+      overflow: hidden;
+      margin: 0;
+
+      picture, img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
     .card-body {
-      padding: 0.6rem 0.75rem 0.5rem;
+      padding: 0.55rem 0.75rem 0.45rem;
     }
 
     .card-title {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
       line-height: 1.3;
     }
 
     .card-text {
-      font-size: 0.8rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.78rem;
+      margin-bottom: 0.35rem;
       line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   }
 
@@ -540,42 +552,62 @@ footer.sticky-bottom {
     margin-bottom: 10px;
   }
 
-  // tag filter bar
-  .tag-filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem;
+  // dropdown multi-select filter
+  .tag-dropdown {
+    position: relative;
+    display: inline-block;
     margin-bottom: 1.25rem;
 
-    .filter-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--global-text-color-light);
-      margin-right: 0.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .tag-filter-btn {
-      padding: 0.2rem 0.65rem;
-      font-size: 0.75rem;
-      border-radius: 999px;
+    .tag-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.82rem;
       border: 1px solid var(--global-divider-color);
-      background: transparent;
+      border-radius: 6px;
+      background: var(--global-bg-color);
       color: var(--global-text-color);
       cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      transition: border-color 0.15s;
 
-      &:hover {
+      &:hover, &.open {
         border-color: var(--global-theme-color);
         color: var(--global-theme-color);
       }
 
-      &.active {
-        background: var(--global-theme-color);
-        border-color: var(--global-theme-color);
-        color: #fff;
+      .caret { font-size: 0.65rem; }
+    }
+
+    .tag-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 180px;
+      background: var(--global-card-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 6px;
+      padding: 0.35rem 0;
+      z-index: 200;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+      &.open { display: block; }
+
+      .tag-dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.3rem 0.75rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        margin: 0;
+        font-weight: normal;
+        color: var(--global-text-color);
+
+        &:hover { background: var(--global-code-bg-color); }
+
+        input[type="checkbox"] { cursor: pointer; accent-color: var(--global-theme-color); }
       }
     }
   }
@@ -585,11 +617,11 @@ footer.sticky-bottom {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
 
     .project-tag {
-      font-size: 0.68rem;
-      padding: 0.1rem 0.45rem;
+      font-size: 0.67rem;
+      padding: 0.08rem 0.4rem;
       border-radius: 999px;
       background: var(--global-code-bg-color);
       color: var(--global-text-color-light);

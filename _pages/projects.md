@@ -20,11 +20,17 @@ horizontal: false
   {%- assign all_tags = all_tags | sort -%}
 
   {%- if all_tags.size > 0 %}
-  <div class="tag-filter-bar">
-    <span class="filter-label">Filter:</span>
-    {%- for tag in all_tags %}
-    <button class="tag-filter-btn" data-tag="{{ tag }}">{{ tag }}</button>
-    {%- endfor %}
+  <div class="tag-dropdown">
+    <button class="tag-dropdown-toggle" id="tag-dropdown-btn">
+      All projects <span class="caret">▾</span>
+    </button>
+    <div class="tag-dropdown-menu" id="tag-dropdown-menu">
+      {%- for tag in all_tags %}
+      <label class="tag-dropdown-item">
+        <input type="checkbox" value="{{ tag }}"> {{ tag }}
+      </label>
+      {%- endfor %}
+    </div>
   </div>
   {%- endif %}
 
@@ -38,17 +44,31 @@ horizontal: false
 
 <script>
 (function () {
-  var activeTags = [];
-  document.querySelectorAll('.tag-filter-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var tag = this.dataset.tag;
-      var idx = activeTags.indexOf(tag);
-      if (idx === -1) { activeTags.push(tag); this.classList.add('active'); }
-      else { activeTags.splice(idx, 1); this.classList.remove('active'); }
+  var btn  = document.getElementById('tag-dropdown-btn');
+  var menu = document.getElementById('tag-dropdown-menu');
+  if (!btn || !menu) return;
+
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.tag-dropdown')) {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+    }
+  });
+
+  menu.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      var active = Array.from(menu.querySelectorAll('input:checked')).map(function (i) { return i.value; });
+      btn.innerHTML = (active.length ? active.join(', ') : 'All projects') + ' <span class="caret">▾</span>';
       document.querySelectorAll('#projects-grid .grid-item').forEach(function (item) {
-        if (activeTags.length === 0) { item.style.display = ''; return; }
+        if (!active.length) { item.style.display = ''; return; }
         var tags = (item.dataset.tags || '').split(',').map(function (t) { return t.trim(); });
-        item.style.display = activeTags.some(function (t) { return tags.indexOf(t) !== -1; }) ? '' : 'none';
+        item.style.display = active.some(function (t) { return tags.indexOf(t) !== -1; }) ? '' : 'none';
       });
     });
   });
