@@ -123,18 +123,6 @@
 
 <p>This article is about that confusion and how I resolved it. Along the way we build a full pipeline: 5 stocks, daily OHLCV data, idempotent upserts, weekend skipping, and automatic historical backfill.</p>
 
-<figure>
-
-  <picture>
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/projects/airflow-stock-tracker/cover.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-
-  </picture><figcaption class="caption">stock_prices DAG grid view — green runs for weekdays, pink (skipped) for weekends</figcaption>
-
-</figure>
-
 <hr>
 
 <h2 id="the-pipeline">The Pipeline</h2>
