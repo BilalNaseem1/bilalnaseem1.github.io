@@ -1,6 +1,6 @@
 <!-- _includes/projects.html -->
 <div class="grid-sizer"></div>
-<div class="grid-item">
+<div class="grid-item" data-tags="{{ project.tags | join: ', ' }}">
   {% if project.redirect -%}
   <a href="{{ project.redirect }}">
     {%- else -%}
@@ -13,8 +13,15 @@
           alt="project thumbnail" -%}
         {%- endif %}
         <div class="card-body">
-          <h2 class="card-title">{{ project.title }}</h2>
+          <h3 class="card-title">{{ project.title }}</h3>
           <p class="card-text">{{ project.description }}</p>
+          {%- if project.tags %}
+          <div class="project-tags">
+            {%- for tag in project.tags %}
+            <span class="project-tag">{{ tag }}</span>
+            {%- endfor %}
+          </div>
+          {%- endif %}
           <div class="row ml-1 mr-1 p-0">
             {%- if project.github -%}
             <div class="github-icon">

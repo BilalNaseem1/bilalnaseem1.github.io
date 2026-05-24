@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: "Data Engineer &amp; ML Engineer · Open to Senior DE, ML, and MLOps Roles"
+subtitle: "Data Engineer &amp; ML Engineer · Open to DE, ML, and MLOps Roles"
 
 profile:
   align: right

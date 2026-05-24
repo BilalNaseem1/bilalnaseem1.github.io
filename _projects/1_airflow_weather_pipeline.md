@@ -4,7 +4,7 @@ title: I Built My First Data Pipeline
 description: "A real-world Karachi weather pipeline: Docker, Airflow, Postgres, and every mistake along the way."
 img: assets/img/projects/airflow-weather-pipeline/cover.jpg
 importance: 1
-category: data-engineering
+tags: [data-engineering, airflow, docker, python, postgres]
 featured: true
 github: https://github.com/BilalNaseem1/airflow-projects
 medium: https://medium.com/@bilalnaseem19/i-built-my-first-data-pipeline-heres-what-nobody-tells-you-337bfce5ca47
