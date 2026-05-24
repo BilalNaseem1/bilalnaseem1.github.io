@@ -524,64 +524,32 @@ footer.sticky-bottom {
   width: 250px;
   margin-bottom: 10px;
 }
-.projects .tag-dropdown {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 1.25rem;
+.projects .tag-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
-.projects .tag-dropdown .tag-dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.82rem;
+.projects .tag-filter-bar .tag-filter-btn {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
   border: 1px solid var(--global-divider-color);
-  border-radius: 6px;
+  border-radius: 999px;
   background: var(--global-bg-color);
   color: var(--global-text-color);
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  user-select: none;
 }
-.projects .tag-dropdown .tag-dropdown-toggle:hover, .projects .tag-dropdown .tag-dropdown-toggle.open {
+.projects .tag-filter-bar .tag-filter-btn:hover {
   border-color: var(--global-theme-color);
   color: var(--global-theme-color);
 }
-.projects .tag-dropdown .tag-dropdown-toggle .caret {
-  font-size: 0.65rem;
-}
-.projects .tag-dropdown .tag-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  min-width: 180px;
-  background: var(--global-card-bg-color);
-  border: 1px solid var(--global-divider-color);
-  border-radius: 6px;
-  padding: 0.35rem 0;
-  z-index: 200;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.projects .tag-dropdown .tag-dropdown-menu.open {
-  display: block;
-}
-.projects .tag-dropdown .tag-dropdown-menu .tag-dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.75rem;
-  font-size: 0.8rem;
-  cursor: pointer;
-  margin: 0;
-  font-weight: normal;
-  color: var(--global-text-color);
-}
-.projects .tag-dropdown .tag-dropdown-menu .tag-dropdown-item:hover {
-  background: var(--global-code-bg-color);
-}
-.projects .tag-dropdown .tag-dropdown-menu .tag-dropdown-item input[type=checkbox] {
-  cursor: pointer;
-  accent-color: var(--global-theme-color);
+.projects .tag-filter-bar .tag-filter-btn.active {
+  background: var(--global-theme-color);
+  border-color: var(--global-theme-color);
+  color: #fff;
 }
 .projects .project-tags {
   display: flex;
