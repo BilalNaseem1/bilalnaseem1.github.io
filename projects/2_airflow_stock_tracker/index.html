@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>I Built a Stock Price Tracker with yfinance | Bilal  Naseem</title>
+    <meta name="author" content="Bilal  Naseem">
+    <meta name="description" content="A daily Airflow pipeline for 5 US stocks — and the scheduling concept every tutorial glosses over.">
+    <meta name="keywords" content="data engineer, machine learning engineer, data science, portfolio, python, spark, airflow, mlops">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://bilalnaseem1.github.io/projects/2_airflow_stock_tracker/">
+    
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/"><span class="font-weight-bold">Bilal </span>Naseem</a><!-- LinkedIn icon on inner pages (top-left) -->
+          <a class="navbar-brand" href="https://www.linkedin.com/in/bilalnaseem1" title="LinkedIn" target="_blank" rel="noopener noreferrer noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+          </a><!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">About</a>
+              </li>
+              
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/projects/">Portfolio</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/code/">Code</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">CV</a>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- page.html -->
+        <div class="post">
+
+          <header class="post-header">
+            <h1 class="post-title">I Built a Stock Price Tracker with yfinance</h1>
+            <p class="post-description">A daily Airflow pipeline for 5 US stocks — and the scheduling concept every tutorial glosses over.</p>
+          </header>
+
+          <article>
+            <p><em>Airflow · Docker · Postgres · yfinance · 5 stocks · daily pipeline</em></p>
+
+<hr>
+
+<p>In Project 00 I built a weather pipeline and learned the basics: sensors, XComs, hooks, connections. Everything ran on <code class="language-plaintext highlighter-rouge">@hourly</code> with <code class="language-plaintext highlighter-rouge">catchup=False</code>. I never had to think about time.</p>
+
+<p>Project 01 forced me to think about time. A lot. The stock price tracker runs on a <code class="language-plaintext highlighter-rouge">@daily</code> schedule with <code class="language-plaintext highlighter-rouge">catchup=True</code> — and the moment I turned it on, I realized I had no idea what Airflow actually means when it says “daily.”</p>
+
+<p>This article is about that confusion and how I resolved it. Along the way we build a full pipeline: 5 stocks, daily OHLCV data, idempotent upserts, weekend skipping, and automatic historical backfill.</p>
+
+<figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/projects/airflow-stock-tracker/cover.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">stock_prices DAG grid view — green runs for weekdays, pink (skipped) for weekends</figcaption>
+
+</figure>
+
+<hr>
+
+<h2 id="the-pipeline">The Pipeline</h2>
+
+<figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/projects/airflow-stock-tracker/pipeline-tasks.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">The complete pipeline — create_table → check_market_open → fetch_prices → validate_prices → store_prices</figcaption>
+
+</figure>
+
+<hr>
+
+<h2 id="the-concept-that-changes-everything-logical_date">The Concept That Changes Everything: <code class="language-plaintext highlighter-rouge">logical_date</code>
+</h2>
+
+<p>Every Airflow tutorial I read mentioned <code class="language-plaintext highlighter-rouge">logical_date</code> in passing. Most called it <code class="language-plaintext highlighter-rouge">execution_date</code> (the old name) and moved on. None of them explained why it’s different from when the task actually runs — and that difference is the entire mental model.</p>
+
+<p><strong>The Newspaper Analogy:</strong> A newspaper covers the events of Monday. But it can only be printed and delivered after Monday ends — so it arrives on Tuesday morning. The newspaper’s content date is Monday. Its delivery date is Tuesday. In Airflow: <code class="language-plaintext highlighter-rouge">logical_date</code> = content date. Actual run time = delivery date.</p>
+
+<figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/projects/airflow-stock-tracker/logical-date-timeline.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">A @daily run fires AFTER the interval ends — always one day behind its logical_date</figcaption>
+
+</figure>
+
+<p>In concrete terms: with <code class="language-plaintext highlighter-rouge">start_date = 2026-05-01</code> and <code class="language-plaintext highlighter-rouge">schedule="@daily"</code>, the first run fires at May 2, 00:00 UTC. Its <code class="language-plaintext highlighter-rouge">logical_date</code> is May 1. It processes May 1’s data.</p>
+
+<blockquote>
+  <p><strong>The Classic Mistake:</strong> Never use <code class="language-plaintext highlighter-rouge">datetime.now()</code> inside a DAG task. If you do, backfilling breaks completely — every historical run would fetch today’s data instead of its own day’s data. Always use <code class="language-plaintext highlighter-rouge">logical_date</code>.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Correct — uses the data interval date
+</span><span class="k">def</span> <span class="nf">fetch_prices</span><span class="p">(</span><span class="n">trade_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">trade_date</span>  <span class="c1"># "2026-05-01" — from logical_date via XCom
+</span>    <span class="n">end</span> <span class="o">=</span> <span class="nf">str</span><span class="p">((</span><span class="n">pendulum</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">trade_date</span><span class="p">)</span> <span class="o">+</span> <span class="nf">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)).</span><span class="nf">date</span><span class="p">())</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="p">.</span><span class="nf">download</span><span class="p">(</span><span class="n">tickers</span><span class="o">=</span><span class="n">STOCKS</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr>
+
+<h2 id="catchup-vs-backfill--two-ways-to-load-history">catchup vs backfill — Two Ways to Load History</h2>
+
+<p>Both load historical data. They work differently.</p>
+
+<figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/projects/airflow-stock-tracker/catchup-vs-backfill.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">catchup fills history automatically on unpause · backfill gives you manual control over any custom range</figcaption>
+
+</figure>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>catchup</th>
+      <th>backfill</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Triggered by</td>
+      <td>Airflow automatically</td>
+      <td>You manually via CLI</td>
+    </tr>
+    <tr>
+      <td>When</td>
+      <td>On DAG unpause</td>
+      <td>Whenever you want</td>
+    </tr>
+    <tr>
+      <td>Range</td>
+      <td>
+<code class="language-plaintext highlighter-rouge">start_date</code> → now</td>
+      <td>Any range you specify</td>
+    </tr>
+    <tr>
+      <td>Use case</td>
+      <td>“Always keep up to date”</td>
+      <td>“Fix this specific range”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In our pipeline, <code class="language-plaintext highlighter-rouge">catchup=True</code> meant that the moment I unpaused the DAG, Airflow immediately started firing runs for every trading day since May 1st. 23 days of history loaded automatically — I wrote zero extra code.</p>
+
+<hr>
+
+<h2 id="writing-the-dag">Writing the DAG</h2>
+
+<h3 id="task-1-create_table--idempotency-from-the-start">Task 1: <code class="language-plaintext highlighter-rouge">create_table</code> — idempotency from the start</h3>
+
+<p>The first task creates the <code class="language-plaintext highlighter-rouge">stock_prices</code> table. The important detail isn’t that it creates a table — it’s the <code class="language-plaintext highlighter-rouge">UNIQUE</code> constraint:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">stock_prices</span> <span class="p">(</span>
+    <span class="n">id</span>         <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">symbol</span>     <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">open</span>       <span class="nb">NUMERIC</span><span class="p">,</span>
+    <span class="n">high</span>       <span class="nb">NUMERIC</span><span class="p">,</span>
+    <span class="n">low</span>        <span class="nb">NUMERIC</span><span class="p">,</span>
+    <span class="k">close</span>      <span class="nb">NUMERIC</span><span class="p">,</span>
+    <span class="n">volume</span>     <span class="nb">BIGINT</span><span class="p">,</span>
+    <span class="n">price_date</span> <span class="nb">DATE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">fetched_at</span> <span class="nb">TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="n">now</span><span class="p">(),</span>
+    <span class="k">CONSTRAINT</span> <span class="n">uq_symbol_date</span> <span class="k">UNIQUE</span> <span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">price_date</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">CONSTRAINT uq_symbol_date UNIQUE (symbol, price_date)</code> means no two rows can have the same stock on the same date. This is the foundation of idempotency — we’ll use it in <code class="language-plaintext highlighter-rouge">store_prices</code> to make re-runs safe.</p>
+
+<h3 id="task-2-check_market_open--skipping-is-not-failing">Task 2: <code class="language-plaintext highlighter-rouge">check_market_open</code> — skipping is not failing</h3>
+
+<p>US markets are closed on weekends. yfinance returns empty data for those days silently — no error, just nothing. Without a guard, we’d store empty rows and wonder why our data had gaps.</p>
+
+<p>My first instinct was to raise a <code class="language-plaintext highlighter-rouge">ValueError</code>. That was wrong. <code class="language-plaintext highlighter-rouge">ValueError</code> marks the task as failed, triggers 3 retries, and fires <code class="language-plaintext highlighter-rouge">on_failure_callback</code>. You’d get paged at 2am because it’s Saturday.</p>
+
+<figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/projects/airflow-stock-tracker/skip-vs-fail.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">ValueError pages you at 2am on Saturday — AirflowSkipException silences it as intended</figcaption>
+
+</figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">airflow.exceptions</span> <span class="kn">import</span> <span class="n">AirflowSkipException</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">check_market_open</span><span class="p">(</span><span class="n">logical_date</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">weekday</span> <span class="o">=</span> <span class="n">logical_date</span><span class="p">.</span><span class="n">day_of_week</span>  <span class="c1"># 0=Monday, 6=Sunday
+</span>    <span class="k">if</span> <span class="n">weekday</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">AirflowSkipException</span><span class="p">(</span>
+            <span class="sa">f</span><span class="sh">"</span><span class="s">Market closed on </span><span class="si">{</span><span class="n">logical_date</span><span class="p">.</span><span class="nf">date</span><span class="p">()</span><span class="si">}</span><span class="s"> — skipping.</span><span class="sh">"</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="nf">str</span><span class="p">(</span><span class="n">logical_date</span><span class="p">.</span><span class="nf">date</span><span class="p">())</span>  <span class="c1"># passes date forward via XCom
+</span></code></pre></div></div>
+
+<h3 id="task-3-fetch_prices--xcom-in-practice">Task 3: <code class="language-plaintext highlighter-rouge">fetch_prices</code> — XCom in practice</h3>
+
+<p><code class="language-plaintext highlighter-rouge">check_market_open</code> returns a date string. <code class="language-plaintext highlighter-rouge">fetch_prices</code> receives it as a parameter. Airflow handles the transfer automatically via XCom — the metadata database acts as the bridge between tasks running in complete isolation.</p>
+
+<figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/projects/airflow-stock-tracker/xcom-flow.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">XComs make data flow look like regular Python function calls — Airflow handles the transfer</figcaption>
+
+</figure>
+
+<blockquote>
+  <p><strong>XCom Size Limit:</strong> XComs are stored in the metadata database. They are designed for small values only — a string, a number, a file path. We write prices to a CSV file and pass only the path through XCom. Never push a DataFrame, a large list, or binary data through XCom.</p>
+</blockquote>
+
+<h3 id="task-5-store_prices--idempotent-upsert">Task 5: <code class="language-plaintext highlighter-rouge">store_prices</code> — idempotent upsert</h3>
+
+<p>This is where idempotency is enforced at the database level. The SQL does the heavy lifting:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">stock_prices</span> <span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="k">open</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="k">close</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">price_date</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">)</span>
+<span class="k">ON</span> <span class="n">CONFLICT</span> <span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">price_date</span><span class="p">)</span>
+<span class="k">DO</span> <span class="k">UPDATE</span> <span class="k">SET</span>
+    <span class="k">open</span>       <span class="o">=</span> <span class="n">EXCLUDED</span><span class="p">.</span><span class="k">open</span><span class="p">,</span>
+    <span class="n">high</span>       <span class="o">=</span> <span class="n">EXCLUDED</span><span class="p">.</span><span class="n">high</span><span class="p">,</span>
+    <span class="n">low</span>        <span class="o">=</span> <span class="n">EXCLUDED</span><span class="p">.</span><span class="n">low</span><span class="p">,</span>
+    <span class="k">close</span>      <span class="o">=</span> <span class="n">EXCLUDED</span><span class="p">.</span><span class="k">close</span><span class="p">,</span>
+    <span class="n">volume</span>     <span class="o">=</span> <span class="n">EXCLUDED</span><span class="p">.</span><span class="n">volume</span><span class="p">,</span>
+    <span class="n">fetched_at</span> <span class="o">=</span> <span class="n">now</span><span class="p">();</span>
+</code></pre></div></div>
+
+<figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/projects/airflow-stock-tracker/upsert-idempotency.png" class="img-fluid rounded" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">Re-running the same DAG run never duplicates data — ON CONFLICT DO UPDATE handles it at the SQL level</figcaption>
+
+</figure>
+
+<hr>
+
+<h2 id="wiring-implicit-vs-explicit-dependencies">Wiring: Implicit vs Explicit Dependencies</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># implicit — inferred from XCom data flow
+</span><span class="n">date</span>      <span class="o">=</span> <span class="nf">check_market_open</span><span class="p">()</span>   <span class="c1"># must run first
+</span><span class="nb">file</span>      <span class="o">=</span> <span class="nf">fetch_prices</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>    <span class="c1"># must run after check_market_open
+</span><span class="n">validated</span> <span class="o">=</span> <span class="nf">validate_prices</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+<span class="nf">store_prices</span><span class="p">(</span><span class="n">validated</span><span class="p">)</span>
+
+<span class="c1"># explicit — no data flows, order still matters
+</span><span class="n">create_table</span> <span class="o">&gt;&gt;</span> <span class="n">date</span>  <span class="c1"># table must exist before we try to write
+</span></code></pre></div></div>
+
+<p>Prefer implicit wherever data flows between tasks — they stay in sync with the code automatically.</p>
+
+<hr>
+
+<h2 id="the-mistakes-i-made">The Mistakes I Made</h2>
+
+<p><strong>1. <code class="language-plaintext highlighter-rouge">ValueError</code> for weekends</strong> — Every weekend run showed red, triggered 3 retries each, and fired <code class="language-plaintext highlighter-rouge">on_failure_callback</code>. The fix was <code class="language-plaintext highlighter-rouge">AirflowSkipException</code> — one import, one word change, all weekend runs went from red to pink.</p>
+
+<p><strong>2. Wiring inside a task function</strong> — I accidentally indented the wiring code inside <code class="language-plaintext highlighter-rouge">store_prices</code>. Python treated it as part of the function body — it never executed during DAG parsing. Only <code class="language-plaintext highlighter-rouge">create_table</code> ran, nothing else. The fix was pure indentation — move the wiring to the DAG body level.</p>
+
+<p><strong>3. Wrong import path for Airflow 3.x</strong> — <code class="language-plaintext highlighter-rouge">airflow.providers.postgres.operators.postgres</code> no longer exists in newer provider versions. The operator moved to <code class="language-plaintext highlighter-rouge">airflow.providers.common.sql.operators.sql</code>. The DAG showed a red import error in the UI until I fixed this.</p>
+
+<p><strong>4. Wrong credentials in the Airflow Connection</strong> — I set the connection login as <code class="language-plaintext highlighter-rouge">postgres</code> but my infra <code class="language-plaintext highlighter-rouge">.env</code> had <code class="language-plaintext highlighter-rouge">POSTGRES_USER=admin</code>. Every <code class="language-plaintext highlighter-rouge">create_table</code> run failed with “password authentication failed.” The task log was the only place the actual error appeared — always check the task log first, not the container logs.</p>
+
+<hr>
+
+<h2 id="what-this-pipeline-taught-me">What This Pipeline Taught Me</h2>
+
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">logical_date</code> is not execution time.</strong> Airflow processes the data interval after it ends. Always pass <code class="language-plaintext highlighter-rouge">logical_date</code> to external APIs — never <code class="language-plaintext highlighter-rouge">datetime.now()</code>.</li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">catchup=True</code> is backfilling for free.</strong> Unpause the DAG and history loads automatically. Zero extra code. The value of getting the mental model right.</li>
+  <li>
+<strong>Skipping is not failing.</strong> <code class="language-plaintext highlighter-rouge">AirflowSkipException</code> exists for expected conditions. <code class="language-plaintext highlighter-rouge">ValueError</code> is for unexpected errors. The distinction matters for on-call noise.</li>
+  <li>
+<strong>Idempotency is a database concern.</strong> <code class="language-plaintext highlighter-rouge">ON CONFLICT DO UPDATE</code> makes re-runs safe at the SQL level — no application logic needed.</li>
+  <li>
+<strong>The task log is your best friend.</strong> Container logs show infrastructure noise. Task logs show exactly what your code did. Always check task logs first.</li>
+  <li>
+<strong>Indentation is logic.</strong> In Python, where you put code determines when it runs. Wiring inside a function body is dead code during DAG parsing.</li>
+</ul>
+
+          </article>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2026 Bilal  Naseem. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener noopener noreferrer" target="_blank">al-folio</a> theme.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+  </body>
+</html>
