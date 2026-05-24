@@ -482,24 +482,34 @@ footer.sticky-bottom {
 .projects a:hover .card-title {
   color: var(--global-theme-color);
 }
-.projects .card img {
+.projects .card figure {
+  height: 150px;
+  overflow: hidden;
+  margin: 0;
+}
+.projects .card figure picture, .projects .card figure img {
+  display: block;
   width: 100%;
-  max-height: 140px;
+  height: 100%;
   object-fit: cover;
 }
 .projects .card .card-body {
-  padding: 0.6rem 0.75rem 0.5rem;
+  padding: 0.55rem 0.75rem 0.45rem;
 }
 .projects .card .card-title {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
   line-height: 1.3;
 }
 .projects .card .card-text {
-  font-size: 0.8rem;
-  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+  margin-bottom: 0.35rem;
   line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .projects .card-item {
   width: auto;
@@ -514,49 +524,74 @@ footer.sticky-bottom {
   width: 250px;
   margin-bottom: 10px;
 }
-.projects .tag-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
+.projects .tag-dropdown {
+  position: relative;
+  display: inline-block;
   margin-bottom: 1.25rem;
 }
-.projects .tag-filter-bar .filter-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--global-text-color-light);
-  margin-right: 0.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.projects .tag-filter-bar .tag-filter-btn {
-  padding: 0.2rem 0.65rem;
-  font-size: 0.75rem;
-  border-radius: 999px;
+.projects .tag-dropdown .tag-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.82rem;
   border: 1px solid var(--global-divider-color);
-  background: transparent;
+  border-radius: 6px;
+  background: var(--global-bg-color);
   color: var(--global-text-color);
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: border-color 0.15s;
 }
-.projects .tag-filter-bar .tag-filter-btn:hover {
+.projects .tag-dropdown .tag-dropdown-toggle:hover, .projects .tag-dropdown .tag-dropdown-toggle.open {
   border-color: var(--global-theme-color);
   color: var(--global-theme-color);
 }
-.projects .tag-filter-bar .tag-filter-btn.active {
-  background: var(--global-theme-color);
-  border-color: var(--global-theme-color);
-  color: #fff;
+.projects .tag-dropdown .tag-dropdown-toggle .caret {
+  font-size: 0.65rem;
+}
+.projects .tag-dropdown .tag-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 180px;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 6px;
+  padding: 0.35rem 0;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.projects .tag-dropdown .tag-dropdown-menu.open {
+  display: block;
+}
+.projects .tag-dropdown .tag-dropdown-menu .tag-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin: 0;
+  font-weight: normal;
+  color: var(--global-text-color);
+}
+.projects .tag-dropdown .tag-dropdown-menu .tag-dropdown-item:hover {
+  background: var(--global-code-bg-color);
+}
+.projects .tag-dropdown .tag-dropdown-menu .tag-dropdown-item input[type=checkbox] {
+  cursor: pointer;
+  accent-color: var(--global-theme-color);
 }
 .projects .project-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 .projects .project-tags .project-tag {
-  font-size: 0.68rem;
-  padding: 0.1rem 0.45rem;
+  font-size: 0.67rem;
+  padding: 0.08rem 0.4rem;
   border-radius: 999px;
   background: var(--global-code-bg-color);
   color: var(--global-text-color-light);
