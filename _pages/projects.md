@@ -20,17 +20,11 @@ horizontal: false
   {%- assign all_tags = all_tags | sort -%}
 
   {%- if all_tags.size > 0 %}
-  <div class="tag-dropdown">
-    <button class="tag-dropdown-toggle" id="tag-dropdown-btn">
-      All projects <span class="caret">▾</span>
-    </button>
-    <div class="tag-dropdown-menu" id="tag-dropdown-menu">
-      {%- for tag in all_tags %}
-      <label class="tag-dropdown-item">
-        <input type="checkbox" value="{{ tag }}"> {{ tag }}
-      </label>
-      {%- endfor %}
-    </div>
+  <div class="tag-filter-bar">
+    <button class="tag-filter-btn active" data-tag="__all__">All</button>
+    {%- for tag in all_tags %}
+    <button class="tag-filter-btn" data-tag="{{ tag }}">{{ tag }}</button>
+    {%- endfor %}
   </div>
   {%- endif %}
 
@@ -44,27 +38,27 @@ horizontal: false
 
 <script>
 (function () {
-  var btn  = document.getElementById('tag-dropdown-btn');
-  var menu = document.getElementById('tag-dropdown-menu');
-  if (!btn || !menu) return;
-
-  btn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    menu.classList.toggle('open');
-    btn.classList.toggle('open');
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.tag-dropdown')) {
-      menu.classList.remove('open');
-      btn.classList.remove('open');
-    }
-  });
-
-  menu.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
-    cb.addEventListener('change', function () {
-      var active = Array.from(menu.querySelectorAll('input:checked')).map(function (i) { return i.value; });
-      btn.innerHTML = (active.length ? active.join(', ') : 'All projects') + ' <span class="caret">▾</span>';
+  var active = [];
+  document.querySelectorAll('.tag-filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var tag = btn.dataset.tag;
+      if (tag === '__all__') {
+        active = [];
+        document.querySelectorAll('.tag-filter-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      } else {
+        document.querySelector('.tag-filter-btn[data-tag="__all__"]').classList.remove('active');
+        if (btn.classList.contains('active')) {
+          btn.classList.remove('active');
+          active = active.filter(function (t) { return t !== tag; });
+        } else {
+          btn.classList.add('active');
+          active.push(tag);
+        }
+        if (active.length === 0) {
+          document.querySelector('.tag-filter-btn[data-tag="__all__"]').classList.add('active');
+        }
+      }
       document.querySelectorAll('#projects-grid .grid-item').forEach(function (item) {
         if (!active.length) { item.style.display = ''; return; }
         var tags = (item.dataset.tags || '').split(',').map(function (t) { return t.trim(); });
