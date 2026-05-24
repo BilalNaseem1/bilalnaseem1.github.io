@@ -20,8 +20,6 @@ Project 01 forced me to think about time. A lot. The stock price tracker runs on
 
 This article is about that confusion and how I resolved it. Along the way we build a full pipeline: 5 stocks, daily OHLCV data, idempotent upserts, weekend skipping, and automatic historical backfill.
 
-{% include figure.html path="assets/img/projects/airflow-stock-tracker/cover.png" caption="stock_prices DAG grid view — green runs for weekdays, pink (skipped) for weekends" class="img-fluid rounded" zoomable=true %}
-
 ---
 
 ## The Pipeline
