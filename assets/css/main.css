@@ -484,6 +484,22 @@ footer.sticky-bottom {
 }
 .projects .card img {
   width: 100%;
+  max-height: 140px;
+  object-fit: cover;
+}
+.projects .card .card-body {
+  padding: 0.6rem 0.75rem 0.5rem;
+}
+.projects .card .card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+.projects .card .card-text {
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
 }
 .projects .card-item {
   width: auto;
@@ -498,13 +514,53 @@ footer.sticky-bottom {
   width: 250px;
   margin-bottom: 10px;
 }
-.projects h2.category {
-  color: var(--global-divider-color);
-  border-bottom: 1px solid var(--global-divider-color);
-  padding-top: 0.5rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  text-align: right;
+.projects .tag-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.projects .tag-filter-bar .filter-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--global-text-color-light);
+  margin-right: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.projects .tag-filter-bar .tag-filter-btn {
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--global-divider-color);
+  background: transparent;
+  color: var(--global-text-color);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.projects .tag-filter-bar .tag-filter-btn:hover {
+  border-color: var(--global-theme-color);
+  color: var(--global-theme-color);
+}
+.projects .tag-filter-bar .tag-filter-btn.active {
+  background: var(--global-theme-color);
+  border-color: var(--global-theme-color);
+  color: #fff;
+}
+.projects .project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+.projects .project-tags .project-tag {
+  font-size: 0.68rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: var(--global-code-bg-color);
+  color: var(--global-text-color-light);
+  line-height: 1.6;
 }
 
 .publications {

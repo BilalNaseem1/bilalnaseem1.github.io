@@ -113,15 +113,19 @@
           </header>
 
           <article>
-            <!-- pages/projects.md -->
-<div class="projects">
-  <!-- Display categorized projects -->
-  <h2 class="category">data-engineering</h2>
-  <!-- Generate cards for each project -->
-  <div class="grid">
+            <div class="projects">
+  <div class="tag-filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="tag-filter-btn" data-tag="airflow">airflow</button>
+    <button class="tag-filter-btn" data-tag="data-engineering">data-engineering</button>
+    <button class="tag-filter-btn" data-tag="docker">docker</button>
+    <button class="tag-filter-btn" data-tag="postgres">postgres</button>
+    <button class="tag-filter-btn" data-tag="python">python</button>
+  </div>
+<div class="grid" id="projects-grid">
 <!-- _includes/projects.html -->
 <div class="grid-sizer"></div>
-<div class="grid-item">
+<div class="grid-item" data-tags="data-engineering, airflow, docker, python, postgres">
   <a href="/projects/1_airflow_weather_pipeline/">
       <div class="card hoverable">
 <figure>
@@ -137,8 +141,15 @@
 </figure>
 
         <div class="card-body">
-          <h2 class="card-title">I Built My First Data Pipeline</h2>
+          <h3 class="card-title">I Built My First Data Pipeline</h3>
           <p class="card-text">A real-world Karachi weather pipeline: Docker, Airflow, Postgres, and every mistake along the way.</p>
+          <div class="project-tags">
+            <span class="project-tag">data-engineering</span>
+            <span class="project-tag">airflow</span>
+            <span class="project-tag">docker</span>
+            <span class="project-tag">python</span>
+            <span class="project-tag">postgres</span>
+          </div>
           <div class="row ml-1 mr-1 p-0">
 <div class="github-icon">
               <div class="icon" data-toggle="tooltip" title="Code Repository">
@@ -150,12 +161,29 @@
       </div>
     </a>
 </div>
-  </div>
-  <h2 class="category">machine-learning</h2>
-  <!-- Generate cards for each project -->
-  <div class="grid">
+
   </div>
 </div>
+
+<script>
+(function () {
+  var activeTags = [];
+  document.querySelectorAll('.tag-filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var tag = this.dataset.tag;
+      var idx = activeTags.indexOf(tag);
+      if (idx === -1) { activeTags.push(tag); this.classList.add('active'); }
+      else { activeTags.splice(idx, 1); this.classList.remove('active'); }
+      document.querySelectorAll('#projects-grid .grid-item').forEach(function (item) {
+        if (activeTags.length === 0) { item.style.display = ''; return; }
+        var tags = (item.dataset.tags || '').split(',').map(function (t) { return t.trim(); });
+        item.style.display = activeTags.some(function (t) { return tags.indexOf(t) !== -1; }) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
 
           </article>
 
