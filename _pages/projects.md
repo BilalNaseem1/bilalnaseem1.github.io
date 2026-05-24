@@ -2,7 +2,7 @@
 layout: page
 title: Portfolio
 permalink: /projects/
-description: A collection of data engineering and machine learning projects — pipelines, platforms, and production systems.
+description: A collection of AI, data engineering and machine learning projects — pipelines, platforms, and production systems.
 nav: true
 nav_order: 2
 horizontal: false
