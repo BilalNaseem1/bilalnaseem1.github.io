@@ -1,6 +1,6 @@
 ---
 layout: page
-title: I Built My First Data Pipeline
+title: Airflow in Practice: Docker Networking, XComs, and the Decisions Nobody Explains
 description: "A real-world Karachi weather pipeline: Docker, Airflow, Postgres, and every mistake along the way."
 img: assets/img/projects/airflow-weather-pipeline/cover.jpg
 importance: 1
